@@ -7,6 +7,8 @@
 
 - **Flat Listing:** Service providers can create accounts and add flats for rent. They can provide detailed information about each flat, including images, description, amenities, and pricing.
 
+- **Note:** Some features will be adding soon. And project is not completed yet.
+
 
 ## Technologies Used
 - **HTML:** Used for creating the structure and layout of the web pages.
@@ -21,3 +23,25 @@
 
 
 ## Installation and Setup
+- **1. Clone the repository:**
+  - git clone https://github.com/your-username/to-let.git
+- **2. Install the required dependencies:**
+  - cd to-let
+  - pip install -r requirements.txt
+  
+- **3. Set up the database:**
+  - python manage.py makemigrations
+  - python manage.py migrate
+  - python manage.py createsuperuser
+      - using this command you are able to create an admin account and access database/admin panel
+
+- **4. Start the development server:**
+  - python manage.py runserver
+
+- **5. Access the website in your browser by visiting 'http://localhost:8000'.**
+
+
+## Contact
+- If you have any questions or suggestions, feel free to contact me at kanhap569@gmail.com.
+
+**Thank you, I hope you find this project helpful to learning Django Framework.**
