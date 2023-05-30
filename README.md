@@ -24,7 +24,8 @@
 
 ## Installation and Setup
 - **1. Clone the repository:**
-  - git clone https://github.com/your-username/to-let.git
+  - git clone https://github.com/your-username/TO-LET.git
+  
 - **2. Install the required dependencies:**
   - cd to-let
   - pip install -r requirements.txt
