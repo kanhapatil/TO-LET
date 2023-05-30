@@ -1,0 +1,75 @@
+{% extends 'Base.html' %}
+{% block content %} 
+
+<style>
+    .form1 {
+    width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: black;
+    }
+
+    input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    }
+
+    label {
+    display: block;
+    margin-bottom: 5px;
+    color: white;
+    }
+
+    button {
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.heading{
+  color: crimson;
+  font-weight: 700;
+  
+}
+</style>
+
+
+<form method="POST" class="form1 mt-5" enctype="multipart/form-data">{% csrf_token %}
+    <h3 class="heading">Member Login</h3>
+    <label for="email" style="margin-top: 15px;">Email</label>
+    <input type="email" id="email" name="email" placeholder="Your email" required>
+
+    <label for="pwd">Password</label>
+    <input type="password" id="pwd" name="pwd" placeholder="Your password" required>
+
+    <input type="submit" value="Login" class="mt-3 btn btn-outline-danger">
+    <p style="color: white;">Don't have an account? <a href="/ownersignup" style="text-decoration: none;">Signup</a></p>
+</form>
+
+  <!----------------------Java script code--------------------------->
+  {% if error == "no" %}
+  <script>
+    alert("Login Successful");
+    window.location = ('{% url "ownerhome" %}')
+  </script>
+
+  {% elif error == "not" %}
+  <script>
+    alert("Owner Status is Pending, Please talk to admin");
+  </script>
+
+  {% elif error == "yes" %}
+  <script>
+    alert("Somethin went wrong, Try again!!!");
+    window.location = ('{% url "ownerlogin" %}')
+  </script>
+  {% endif %}
+
+{% endblock content %}

@@ -1,0 +1,116 @@
+{% include 'OwnerNavbar.html' %}
+{% block content %} 
+
+<style>
+    .form1 {
+    width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: black;
+    }
+
+    input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    }
+
+    textarea {
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    select{
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        height: 45px;
+    }
+
+    label {
+    display: block;
+    margin-bottom: 5px;
+    color: white;
+    }
+
+    button {
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.heading{
+  color: crimson;
+  font-weight: 700;
+}
+</style>
+
+
+<form method="POST" class="form1 mt-5" enctype="multipart/form-data">{% csrf_token %}
+    <h3 class="heading">Add Your Flat</h3>
+    <div class="row" style="margin-top: 15px;">
+        <div class="col-md-6">
+            <label for="address">Address</label>
+            <input type="text" name="address" placeholder="Your address" required>
+        </div>
+
+        <div class="col-md-6">
+            <label for="contact">Contact number</label>
+            <input type="text" name="contact" placeholder="Your contact number" required>
+        </div>
+    </div>
+  
+    <div class="row">
+        <div class="col-md-6">
+            <label for="price">Price</label>
+            <input type="text" name="price" placeholder="Flat price" required>
+        </div>
+
+        <div class="col-md-6"  style="display: inline;">
+            <label for="flattype">Flat Type</label>
+
+            <select name="choice" required>
+                <option value="singleroom">Single Room</option>
+                <option value="1bhk">1-BHK</option>
+                <option value="2bhk">2-BHK</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+    </div>
+    
+
+    <div class="row">
+        <div class="col-md-12">
+            <label for="image"><b>Image</b></label>
+            <input type="file" class="form-control" id="image" name="image" required>
+        </div>
+    </div>
+  
+    <div class="row">
+        <div class="col-md-12">
+            <label for="desc">Description</label>
+            <textarea name="desc" id="desc" cols="30" rows="7" placeholder="About Your Flat"></textarea>
+        </div>
+    </div>
+  
+    <input type="submit" value="Add" class="mt-3 btn btn-outline-danger">
+</form>
+
+{% if error == "no" %}
+<script>
+    alert("Flat Added Successfully!!");
+</script>
+{% elif error == "yes" %}
+<script>
+    alert("Something Went Wrong, Try again...")
+</script>
+{% endif %}
+
+{% endblock content %}

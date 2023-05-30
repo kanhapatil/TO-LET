@@ -1,0 +1,108 @@
+{% extends 'Base.html' %}
+{% block content %} 
+
+<style>
+    .form1 {
+    width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: black;
+    }
+
+    input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    }
+
+    label {
+    display: block;
+    margin-bottom: 5px;
+    color: white;
+    }
+
+    button {
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.heading{
+  color: crimson;
+  font-weight: 700;
+}
+</style>
+
+
+<form method="POST" class="form1 mt-5" enctype="multipart/form-data">{% csrf_token %}
+    <h3 class="heading">Become a Member</h3>
+    <div class="row" style="margin-top: 15px;">
+        <div class="col-md-6">
+            <label for="fname">First Name</label>
+            <input type="text" name="fname" placeholder="Your first name" required>
+        </div>
+
+        <div class="col-md-6">
+            <label for="lname">Last Name</label>
+            <input type="text" name="lname" placeholder="Your last name" required>
+        </div>
+    </div>
+  
+    <div class="row">
+        <div class="col-md-6">
+            <label for="email">Email</label>
+            <input type="email" name="email" placeholder="Your email" required>
+        </div>
+
+        <div class="col-md-6">
+            <label for="contact">Contact number</label>
+            <input type="text" name="contact" placeholder="Your contact number" required>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <label for="image"><b>Image</b></label>
+            <input type="file" class="form-control" id="image" name="image" required>
+        </div>
+    </div>
+  
+    <div class="row">
+        <div class="col-md-12">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="pwd" placeholder="Your password" required>
+        </div>
+    </div>
+  
+    <div class="row">
+        <div class="col-md-12">
+            <label for="confirm_password">Confirm password</label>
+            <input type="password" id="cpassword" name="cpwd" placeholder="Confirm password" required>
+        </div>
+    </div>
+  
+    <input type="submit" value="Signup" class="mt-3 btn btn-outline-danger">
+    <p style="color: white;">Already have an account? <a href="/ownerlogin" style="text-decoration: none;">Login</a></p>
+</form>
+
+  <!----------------------Java script code--------------------------->
+  {% if error == "no" %}
+  <script>
+    alert("Signup Successful");
+    window.location = ('{% url "ownerlogin" %}')
+  </script>
+
+  {% elif error == "yes" %}
+  <script>
+    alert("Password & Confirm Password does not match, Try again!!!");
+    window.location = ('{% url "ownersignup" %}')
+  </script>
+  {% endif %}
+
+{% endblock content %}
