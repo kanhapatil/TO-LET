@@ -25,3 +25,15 @@ class AddFlat(models.Model):
 
     def __str__(self):
         return self.address
+    
+
+# CREATE MODEL FOR USER
+class UserModel(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    mobile = models.CharField(max_length=15, null=True)
+    image = models.FileField(upload_to="media", null=True)
+    type = models.CharField(max_length=15, null=True)
+    status = models.CharField(max_length=20, null=True)
+
+    def __str__(self):
+        return self.user.username

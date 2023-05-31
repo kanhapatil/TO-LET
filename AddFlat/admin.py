@@ -1,8 +1,11 @@
 from django.contrib import admin
-from .models import FlatOwner, AddFlat
+from .models import FlatOwner, AddFlat, UserModel
 
 # REGISTER FLAT OWNER MODEL
 admin.site.register(FlatOwner)
 
 # REGISTER ADD FLAT MODEL
 admin.site.register(AddFlat)
+
+# REGISTER USER MODEL
+admin.site.register(UserModel)

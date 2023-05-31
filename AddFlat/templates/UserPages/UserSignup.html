@@ -1,5 +1,5 @@
-{% extends 'Base.html' %}
-{% block content %} 
+{% extends '../Base.html' %}
+{% block content %}
 
 <style>
     .form1 {
@@ -41,7 +41,7 @@
 
 
 <form method="POST" class="form1 mt-5" enctype="multipart/form-data">{% csrf_token %}
-    <h3 class="heading">Become a Member</h3>
+    <h3 class="heading">User Registration</h3>
     <div class="row" style="margin-top: 15px;">
         <div class="col-md-6">
             <label for="fname">First Name</label>
@@ -88,7 +88,7 @@
     </div>
   
     <input type="submit" value="Signup" class="mt-3 btn btn-outline-danger">
-    <p style="color: white;">Already have an account? <a href="/ownerlogin" style="text-decoration: none;">Login</a></p>
+    <p style="color: white;">Already have an account? <a href="/userlogin" style="text-decoration: none;">Login</a></p>
 </form>
 
   <!----------------------Java script code--------------------------->
@@ -99,14 +99,13 @@
 
   {% elif error == "no" %}
   <script>
-    alert("Signup Successful");
-    window.location = ('{% url "ownerlogin" %}')
+    alert("Signup Successfully");
+    window.location = ('{% url "userlogin" %}')
   </script>
 
   {% elif error == "yes" %}
   <script>
     alert("Password & Confirm Password does not match, Try again!!!");
-    window.location = ('{% url "ownersignup" %}')
   </script>
   {% endif %}
 

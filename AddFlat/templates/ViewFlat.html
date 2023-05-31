@@ -1,0 +1,58 @@
+{% extends 'Base.html' %}
+{% block content %} 
+
+<style>
+    .container1{
+        border: 1px solid black;
+        border-radius: 5px;
+        width: 70%;
+        background-color: black;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+    .container1:hover{
+        box-shadow: 0 6px 10px 0 rgba(11, 11, 11, 0.458);
+    }
+
+    .container1-img{
+        margin-top: 12px;
+        width: 98%;
+        margin-bottom: 12px;
+    }
+
+    .content{
+        margin-top: 12px;
+    }
+</style> 
+
+
+
+<div class="container container1 mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="img">
+                <img src="{{ID.image.url}}" alt="Flat Image" class="container1-img">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="content">
+                <h4 style="color: white;"><b>Price : ₹{{ID.price}}</b></h4> 
+                <p style="color: whitesmoke;">Flat-Type : {{ID.flat_type}}</p> 
+                <p style="color: whitesmoke;">Address : {{ID.address}}</p> 
+                <p style="color: whitesmoke;">Description : {{ID.desc}}</p>
+            </div>
+
+            <div>
+                <a href="tel:{{ID.contact}}" class="btn btn-outline-danger">Call & BookFlat</a>
+                <a href="mailto:{{ID.owner}}" class="btn btn-outline-danger">Write Mail to BookFlat</a>
+            </div>
+
+            <div class="mt-2">
+                <a href="/" style="text-decoration: none; color: crimson;">🡠 return back</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

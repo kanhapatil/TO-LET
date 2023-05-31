@@ -24,11 +24,16 @@ urlpatterns = [
     path('', Home, name='home'),
     path('ownersignup/', OwnerSignup, name="ownersignup"),
     path('ownerlogin/', OwnerLogin, name="ownerlogin"),
-    path('ownerhome/', OwnerHome, name="ownerhome"),
     path('ownerdashboard/', OwnerDashBoard, name="ownerdashboard"),
     path('Logout/', Logout, name="Logout"),
     path('addflats/', Add_Flat, name="addflats"),
     path('deleteflat/<int:pid>', DeleteFlat, name="deleteflat"),
+    path('editflat/<int:pid>', EditFlat, name="editflat"),
+    path('viewflat/<int:pid>', ViewFlat, name="viewflat"),
+
+    # Path's for user
+    path('usersignup/', UserSignup, name="usersignup"),
+    path('userlogin/', UserLogin, name="userlogin"),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

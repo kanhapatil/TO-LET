@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from .models import FlatOwner, AddFlat
+from .models import FlatOwner, AddFlat, UserModel
 from django.contrib.auth import authenticate, login, logout
 
 # HOME PAGE FUNCTION
@@ -22,7 +22,11 @@ def OwnerSignup(request):
         con = request.POST['contact']
         cp = request.POST['cpwd']
 
-        if p == cp:
+        user = User.objects.filter(username = e) 
+        if user.exists():
+            error = "Email Exist"
+
+        elif p == cp:
             try:
                 user = User.objects.create_user(first_name=f, last_name=l, username=e, password=p)
                 FlatOwner.objects.create(user=user, mobile=con, image=i, type='Owner', status="Pending")
@@ -57,14 +61,6 @@ def OwnerLogin(request):
             
     d = {'error':error}
     return render(request, 'OwnerLogin.html', d)
-
-
-# OWNER HOME PAGE FUNCTION
-def OwnerHome(request):
-    if not request.user.is_authenticated:
-        return redirect('ownerlogin')
-    
-    return render(request, 'OwnerHome.html')
 
 
 # OWNER LOGOUT FUNCTION
@@ -123,6 +119,73 @@ def DeleteFlat(request, pid):
     flat.delete()
     return redirect('/ownerdashboard')
 
+
+# EDIT OWNER FLAT
+def EditFlat(request, pid):
+    ID = AddFlat.objects.get(id=pid)
+
+    error = ""
+    if request.method == 'POST':
+        add = request.POST['address']
+        cont = request.POST['contact']
+        price = request.POST['price']
+        ftype = request.POST['choice']
+        img = request.FILES['image']
+        des = request.POST['desc']
+
+        try:
+            ID.address = add
+            ID.contact = cont
+            ID.price = price
+            ID.flat_type = ftype
+            ID.desc = des
+            ID.image = img
+            ID.save()
+            error = "no"
+        except:
+            error = "yes"        
+            
+    d = {'ID':ID, 'error':error}
+    return render(request, 'EditFlat.html', d)
+
+
 # VIEW FLAT FUNCTION
-# def ViewFlat(request, pid):
-#     return render(request, 'ViewFlat.html')
+def ViewFlat(request, pid):
+    ID = AddFlat.objects.get(id=pid)
+    d = {'ID':ID}
+    return render(request, 'ViewFlat.html', d)
+
+
+# USER SIGNUP FUNCTION
+def UserSignup(request):
+    error = ""
+    if request.method == 'POST':
+        f = request.POST['fname']
+        l = request.POST['lname']
+        i = request.FILES['image']
+        p = request.POST['pwd']
+        e = request.POST['email']
+        con = request.POST['contact']
+        cp = request.POST['cpwd']
+
+        user1 = User.objects.filter(username=e)
+        if user1.exists():
+            error = "Email Exist"
+        
+        elif p == cp:
+            try:
+                user = User.objects.create_user(first_name=f, last_name=l, username=e, password=p)
+                UserModel.objects.create(user=user, mobile=con, image=i, type='user', status="Accept")
+                error = "no"
+            except:
+                error = "yes"
+        else:
+            error = "yes"
+
+    d = {'error':error}
+    return render(request, 'UserPages/UserSignup.html', d)
+
+
+# USER LOGIN FUNCTION
+def UserLogin(request):
+    return render(request, 'UserPages/UserLogin.html')
