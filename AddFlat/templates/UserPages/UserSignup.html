@@ -11,7 +11,7 @@
     background-color: black;
     }
 
-    input {
+    .input1 {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -25,17 +25,9 @@
     color: white;
     }
 
-    button {
-    background-color: #000;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-}
-
-.heading{
-  color: crimson;
-  font-weight: 700;
+    .heading{
+    color: crimson;
+    font-weight: 700;
 }
 </style>
 
@@ -45,51 +37,55 @@
     <div class="row" style="margin-top: 15px;">
         <div class="col-md-6">
             <label for="fname">First Name</label>
-            <input type="text" name="fname" placeholder="Your first name" required>
+            <input class="input1" type="text" name="fname" placeholder="Your first name" required>
         </div>
 
         <div class="col-md-6">
             <label for="lname">Last Name</label>
-            <input type="text" name="lname" placeholder="Your last name" required>
+            <input class="input1" type="text" name="lname" placeholder="Your last name" required>
         </div>
     </div>
   
     <div class="row">
         <div class="col-md-6">
             <label for="email">Email</label>
-            <input type="email" name="email" placeholder="Your email" required>
+            <input class="input1" type="email" name="email" placeholder="Your email" required>
         </div>
 
         <div class="col-md-6">
             <label for="contact">Contact number</label>
-            <input type="text" name="contact" placeholder="Your contact number" required>
+            <input class="input1" type="text" name="contact" placeholder="Your contact number" required>
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-12">
             <label for="image"><b>Image</b></label>
-            <input type="file" class="form-control" id="image" name="image" required>
+            <input type="file" class="form-control input1" id="image" name="image" required>
         </div>
     </div>
   
     <div class="row">
         <div class="col-md-12">
             <label for="password">Password</label>
-            <input type="password" id="password" name="pwd" placeholder="Your password" required>
+            <input class="input1" type="password" id="password" name="pwd" placeholder="Your password" required>
         </div>
     </div>
   
     <div class="row">
         <div class="col-md-12">
             <label for="confirm_password">Confirm password</label>
-            <input type="password" id="cpassword" name="cpwd" placeholder="Confirm password" required>
+            <input class="input1" type="password" id="cpassword" name="cpwd" placeholder="Confirm password" required>
         </div>
     </div>
   
-    <input type="submit" value="Signup" class="mt-3 btn btn-outline-danger">
-    <p style="color: white;">Already have an account? <a href="/userlogin" style="text-decoration: none;">Login</a></p>
+    <input type="submit" value="Signup" class="mt-3 btn btn-outline-danger form-control">
+    <p style="color: white; margin-top: 5px;">Already have an account? <a href="/userlogin" style="text-decoration: none;">Login</a></p>
 </form>
+
+<div>
+    {% include "Footer.html" %}
+</div>
 
   <!----------------------Java script code--------------------------->
   {% if error == "Email Exist" %}

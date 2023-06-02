@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 def Home(request):
     flat_data = AddFlat.objects.all()
     context = {'flat_data':flat_data}
+
     return render(request, 'Home.html', context)
 
 
@@ -84,15 +85,14 @@ def Add_Flat(request):
         price = request.POST['price']
         ftype = request.POST['choice']
         img = request.FILES['image']
+        c = request.POST['city']
         des = request.POST['desc']
 
         user = request.user
         owner = FlatOwner.objects.get(user=user)
 
-        print(add, cont, price, des)
-
         try:
-            AddFlat.objects.create(owner=owner, address=add, contact=cont, price=price, flat_type=ftype, image=img, desc=des) 
+            AddFlat.objects.create(owner=owner, address=add, contact=cont, price=price, flat_type=ftype, image=img, city=c, desc=des) 
             error = "no" 
         except: 
             error = "yes" 
@@ -115,6 +115,8 @@ def OwnerDashBoard(request):
 
 # DELETE ADDED FLAT
 def DeleteFlat(request, pid):
+    if not request.user.is_authenticated:
+        return redirect("ownerlogin")
     flat = AddFlat.objects.get(id=pid)
     flat.delete()
     return redirect('/ownerdashboard')
@@ -122,8 +124,10 @@ def DeleteFlat(request, pid):
 
 # EDIT OWNER FLAT
 def EditFlat(request, pid):
+    if not request.user.is_authenticated:
+        return redirect("ownerlogin")
+    
     ID = AddFlat.objects.get(id=pid)
-
     error = ""
     if request.method == 'POST':
         add = request.POST['address']
@@ -131,6 +135,7 @@ def EditFlat(request, pid):
         price = request.POST['price']
         ftype = request.POST['choice']
         img = request.FILES['image']
+        c = request.POST['city']
         des = request.POST['desc']
 
         try:
@@ -139,6 +144,7 @@ def EditFlat(request, pid):
             ID.price = price
             ID.flat_type = ftype
             ID.desc = des
+            ID.city = c
             ID.image = img
             ID.save()
             error = "no"
@@ -151,6 +157,8 @@ def EditFlat(request, pid):
 
 # VIEW FLAT FUNCTION
 def ViewFlat(request, pid):
+    if not request.user.is_authenticated:
+        return redirect('userlogin')
     ID = AddFlat.objects.get(id=pid)
     d = {'ID':ID}
     return render(request, 'ViewFlat.html', d)
@@ -188,4 +196,21 @@ def UserSignup(request):
 
 # USER LOGIN FUNCTION
 def UserLogin(request):
-    return render(request, 'UserPages/UserLogin.html')
+    error = ""
+    if request.method == 'POST':
+        e = request.POST['email']
+        p = request.POST['pwd']
+
+        user = authenticate(username=e, password=p)
+        if user:
+            user1 = UserModel.objects.get(user=user)
+            if user1.type == "user" and user1.status != "Pending":
+                login(request, user)
+                error = "no"
+            else:
+                error = "not"
+        else:
+            error = "yes"
+
+    d = {'error': error}
+    return render(request, 'UserPages/UserLogin.html', d)

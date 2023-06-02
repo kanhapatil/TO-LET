@@ -5,7 +5,8 @@
     <table class="table table-dark table-striped table-hover">
         <thead> 
             <tr> 
-                <th>S. No.</th> 
+                <th>S. No.</th>
+                <th>City</th> 
                 <th>Address</th> 
                 <th>Price</th> 
                 <th>Type</th> 
@@ -19,6 +20,7 @@
             {% for i in data %}
             <tr>
                 <td>{{forloop.counter}}</td>
+                <td>{{i.city}}</td>
                 <td>{{i.address}}</td>
                 <td>{{i.price}}</td>
                 <td>{{i.flat_type}}</td> 

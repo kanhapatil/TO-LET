@@ -7,22 +7,23 @@
         margin: 0px auto;
         margin-right: 0px;
     }
-.card1 {
-    background-color: black;
-    border: 1px solid white;
-    border-radius: 5px;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    width: 22%;
-    height: 400px;
-    float: left;
-    margin: 8px;
-    transition: ease 1s;
-}
+    
+    .card1 {
+        background-color: black;
+        border: 1px solid white;
+        border-radius: 5px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width: 22%;
+        height: 440px;
+        float: left;
+        margin: 8px;
+        transition: ease 1s;
+    }
 
 .card1:hover {
     box-shadow: 0 6px 10px 0 rgba(11, 11, 11, 0.458);
-    transform: translateY(-10px);
+    transform: translateY(-10px); 
 }
 
 .card1-img {
@@ -73,15 +74,15 @@
     }
 </style> 
 
-
 <section><br><br>
     {% for data in flat_data %}
         <div class="card1">
             <img src="{{data.image.url}}" alt="Flat Image" class="card1-img">
             <div class="container mt-1">
             <h4 style="color: white;"><b>Price : ₹{{data.price}}</b></h4> 
-            <p style="color: whitesmoke;">Flat-Type : {{data.flat_type}}</p> 
+            <p style="color: whitesmoke;">City : {{data.city}}</p>
             <p style="color: whitesmoke;">Address : {{data.address}}</p> 
+            <p style="color: whitesmoke;">Flat-Type : {{data.flat_type}}</p> 
             <p style="color: whitesmoke;" class="limited-text">Description : {{data.desc}}</p>
             </div>
 

@@ -21,6 +21,7 @@ class AddFlat(models.Model):
     price = models.CharField(max_length=50)
     flat_type = models.CharField(max_length=30, null=True)
     image = models.FileField(upload_to="media", null=True)
+    city = models.CharField(max_length=200, null=True)
     desc = models.TextField()
 
     def __str__(self):

@@ -23,8 +23,13 @@
     .content{
         margin-top: 12px;
     }
-</style> 
 
+    @media screen and (max-width:765px) {
+        .container1-img {
+            margin-left: 4px;
+        }
+    }
+</style> 
 
 
 <div class="container container1 mt-5">
@@ -38,8 +43,9 @@
         <div class="col-md-6">
             <div class="content">
                 <h4 style="color: white;"><b>Price : ₹{{ID.price}}</b></h4> 
-                <p style="color: whitesmoke;">Flat-Type : {{ID.flat_type}}</p> 
-                <p style="color: whitesmoke;">Address : {{ID.address}}</p> 
+                <p style="color: whitesmoke;">City : {{ID.city}}</p>
+                <p style="color: whitesmoke;">Address : {{ID.address}}</p>
+                <p style="color: whitesmoke;">Flat-Type : {{ID.flat_type}}</p>  
                 <p style="color: whitesmoke;">Description : {{ID.desc}}</p>
             </div>
 
@@ -48,11 +54,15 @@
                 <a href="mailto:{{ID.owner}}" class="btn btn-outline-danger">Write Mail to BookFlat</a>
             </div>
 
-            <div class="mt-2">
+            <div class="mt-2 pb-2">
                 <a href="/" style="text-decoration: none; color: crimson;">🡠 return back</a>
             </div>
         </div>
     </div>
+</div>
+
+<div style="margin-top: 60px;">
+    {% include "Footer.html" %}
 </div>
 
 {% endblock content %}
