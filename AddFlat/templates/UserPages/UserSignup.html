@@ -11,6 +11,19 @@
     background-color: black;
     }
 
+    @media screen and (max-width:820px) {
+      .form1 {
+        width: 60%;
+      }
+    }
+
+
+    @media screen and (max-width:440px) {
+      .form1 {
+        width: 80%;
+      }
+    }
+
     .input1 {
     width: 100%;
     padding: 10px;
@@ -30,7 +43,6 @@
     font-weight: 700;
 }
 </style>
-
 
 <form method="POST" class="form1 mt-5" enctype="multipart/form-data">{% csrf_token %}
     <h3 class="heading">User Registration</h3>
@@ -55,13 +67,6 @@
         <div class="col-md-6">
             <label for="contact">Contact number</label>
             <input class="input1" type="text" name="contact" placeholder="Your contact number" required>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <label for="image"><b>Image</b></label>
-            <input type="file" class="form-control input1" id="image" name="image" required>
         </div>
     </div>
   

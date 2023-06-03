@@ -34,6 +34,7 @@ urlpatterns = [
     # Path's for user
     path('usersignup/', UserSignup, name="usersignup"),
     path('userlogin/', UserLogin, name="userlogin"),
+    path('userdashoard/', Userdashoard, name="userdashoard"),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

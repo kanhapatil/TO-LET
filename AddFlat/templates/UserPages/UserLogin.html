@@ -3,12 +3,25 @@
 
 <style>
     .form1 {
-    width: 600px;
+    width: 40.5%;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: black;
+    }
+
+    @media screen and (max-width:820px) {
+      .form1 {
+        width: 60%;
+      }
+    }
+
+
+    @media screen and (max-width:440px) {
+      .form1 {
+        width: 80%;
+      }
     }
 
     .input1 {
@@ -52,6 +65,7 @@
   {% if error == "no" %}
   <script>
     alert("Login Successfully");
+    window.location = '{% url "userdashoard" %}'
   </script>
 
   {% elif error == "not" %}

@@ -1,7 +1,19 @@
 {% include 'OwnerNavbar.html' %}
 {% block content %} 
 
-<div class="container mt-5">
+<style>
+    .container2{
+        width: 100%;
+    }
+
+    @media screen and (max-width: 1000px) {
+        .d {
+            margin-top: 10px;
+        }
+    }
+</style>
+
+<div class="container mt-5 container2">
     <table class="table table-dark table-striped table-hover">
         <thead> 
             <tr> 
@@ -25,7 +37,7 @@
                 <td>{{i.price}}</td>
                 <td>{{i.flat_type}}</td> 
                 <td>{{i.contact}}</td> 
-                <td>{{i.desc}}</td> 
+                <td class="data-hide">{{i.desc}}</td> 
                 <td> 
                     <a href="{% url 'editflat' i.id %}" class="btn btn-outline-warning">Edit</a>
                     <a href="{% url 'deleteflat' i.id %}" onclick="return confirm('Are you sure? You are deleting your added flat')" class="btn btn-outline-danger">Delete</a>

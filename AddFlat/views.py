@@ -17,7 +17,6 @@ def OwnerSignup(request):
     if request.method == 'POST':
         f = request.POST['fname']
         l = request.POST['lname']
-        i = request.FILES['image']
         p = request.POST['pwd']
         e = request.POST['email']
         con = request.POST['contact']
@@ -30,7 +29,7 @@ def OwnerSignup(request):
         elif p == cp:
             try:
                 user = User.objects.create_user(first_name=f, last_name=l, username=e, password=p)
-                FlatOwner.objects.create(user=user, mobile=con, image=i, type='Owner', status="Pending")
+                FlatOwner.objects.create(user=user, mobile=con, type='Owner', status="Pending")
                 error="no"
             except:
                 error="yes"
@@ -65,10 +64,9 @@ def OwnerLogin(request):
 
 
 # OWNER LOGOUT FUNCTION
-def Logout(request):
+def Logout(request): 
     if not request.user.is_authenticated:
         return redirect("ownerlogin")
-    
     logout(request)
     return redirect('/')
 
@@ -170,7 +168,6 @@ def UserSignup(request):
     if request.method == 'POST':
         f = request.POST['fname']
         l = request.POST['lname']
-        i = request.FILES['image']
         p = request.POST['pwd']
         e = request.POST['email']
         con = request.POST['contact']
@@ -183,7 +180,7 @@ def UserSignup(request):
         elif p == cp:
             try:
                 user = User.objects.create_user(first_name=f, last_name=l, username=e, password=p)
-                UserModel.objects.create(user=user, mobile=con, image=i, type='user', status="Accept")
+                UserModel.objects.create(user=user, mobile=con, type='user', status="Accept")
                 error = "no"
             except:
                 error = "yes"
@@ -214,3 +211,8 @@ def UserLogin(request):
 
     d = {'error': error}
     return render(request, 'UserPages/UserLogin.html', d)
+
+
+# USER DASHBOARD
+def Userdashoard(request):
+    return render(request, "UserPages/Userdashoard.html")
