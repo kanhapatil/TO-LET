@@ -1,53 +1,10 @@
 {% extends '../Base.html' %}
 {% block content %}
 
-<style>
-    .form1 {
-    width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: black;
-    }
+<!------------------Load css file----------------------->
+{% load static %}
+<link rel="stylesheet" href="{% static 'myfirst.css' %}">
 
-    @media screen and (max-width:820px) {
-      .form1 {
-        width: 60%;
-      }
-    }
-
-
-    @media screen and (max-width:440px) {
-      .form1 {
-        width: 80%;
-      }
-    }
-
-    .input1 {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    }
-
-    label {
-    display: block;
-    margin-bottom: 5px;
-    color: white;
-    }
-
-    .heading{
-    color: crimson;
-    font-weight: 700;
-}
-
-.SignupFontStyle{
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-size: 17px;
-}
-</style>
 
 <form method="POST" class="form1 mt-5 SignupFontStyle" enctype="multipart/form-data">{% csrf_token %}
     <h3 class="heading">User Registration</h3>

@@ -1,25 +1,9 @@
 {% extends 'Base.html' %}
 {% block content %}
 
-<style>
-    .font {
-        margin-top: 20px;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        font-weight: 900;
-    }
-
-    .para {
-        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-        color: black;
-        font-size: 18px;
-    }
-
-    ol li {
-        line-height: 1.4;
-        margin-top: 10px;
-        color: rgb(99, 98, 98);
-    }
-</style>
+<!------------------Load css file----------------------->
+{% load static %}
+<link rel="stylesheet" href="{% static 'myfirst.css' %}">
 
 <div class="container mt-5">
     <div>

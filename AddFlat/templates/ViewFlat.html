@@ -1,42 +1,16 @@
 {% extends 'Base.html' %}
 {% block content %} 
 
-<style>
-    .container1{
-        border: 1px solid black;
-        border-radius: 5px;
-        width: 70%;
-        background-color: black;
-        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    }
-
-    .container1:hover{
-        box-shadow: 0 6px 10px 0 rgba(11, 11, 11, 0.458);
-    }
-
-    .container1-img{
-        margin-top: 12px;
-        width: 98%;
-        margin-bottom: 12px;
-    }
-
-    .content{
-        margin-top: 12px;
-    }
-
-    @media screen and (max-width:765px) {
-        .container1-img {
-            margin-left: 4px;
-        }
-    }
-</style> 
+<!------------------Load css file----------------------->
+{% load static %}
+<link rel="stylesheet" href="{% static 'myfirst.css' %}">
 
 
-<div class="container container1 mt-5">
+<div class="container container-view mt-5">
     <div class="row">
         <div class="col-md-6">
             <div class="img">
-                <img src="{{ID.image.url}}" alt="Flat Image" class="container1-img">
+                <img src="{{ID.image.url}}" alt="Flat Image" class="container-view-img">
             </div>
         </div>
 

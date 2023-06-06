@@ -1,56 +1,9 @@
 {% extends 'Base.html' %}
 {% block content %} 
 
-<style>
-    .form1 {
-    width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: black;
-    }
-
-    @media screen and (max-width:820px) {
-      .form1 {
-        width: 60%;
-      }
-    }
-
-
-    @media screen and (max-width:440px) {
-      .form1 {
-        width: 80%;
-      }
-    }
-
-    .input1 {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    }
-
-    label {
-    display: block;
-    margin-bottom: 5px;
-    color: white;
-    }
-
-    button {
-    background-color: #000;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-}
-
-.heading{
-  color: crimson;
-  font-weight: 700;
-}
-</style>
+<!------------------Load css file----------------------->
+{% load static %}
+<link rel="stylesheet" href="{% static 'myfirst.css' %}">
 
 
 <form method="POST" class="form1 mt-5" enctype="multipart/form-data">{% csrf_token %}

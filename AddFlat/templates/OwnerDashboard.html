@@ -1,17 +1,10 @@
 {% include 'OwnerNavbar.html' %}
 {% block content %} 
 
-<style>
-    .container2{
-        width: 100%;
-    }
+<!------------------Load css file----------------------->
+{% load static %}
+<link rel="stylesheet" href="{% static 'myfirst.css' %}">
 
-    @media screen and (max-width: 1000px) {
-        .d {
-            margin-top: 10px;
-        }
-    }
-</style>
 
 <div class="container mt-5 container2">
     <table class="table table-dark table-striped table-hover">
