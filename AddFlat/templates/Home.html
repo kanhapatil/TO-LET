@@ -62,14 +62,19 @@
         text-overflow: ellipsis;
         white-space: nowrap;
     }
+
+  .HFontStyle{
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      font-size: 17px;
+  }
 </style> 
 
 <div class="container container1 mt-5">
-    <div class="row">
+    <div class="row HFontStyle">
         {% for data in flat_data %}
         <div class="card1">
             <img src="{{data.image.url}}" alt="Flat Image" class="card1-img">
-            <div class="mt-2">
+            <div class="mt-2 ">
                 <h4 style="color: white;"><b>Price : ₹{{data.price}}</b></h4> 
                 <p style="color: whitesmoke;">City : {{data.city}}</p>
                 <p style="color: whitesmoke;">Address : {{data.address}}</p> 
@@ -79,6 +84,8 @@
 
             <div class="booknow">
                 <a href="{% url 'viewflat' data.id %}" class="btn btn-outline-danger">Book Now</a>
+
+                <a href="#" class="btn btn-outline-danger">Hold Now</a>
             </div>
         </div>
         {% endfor %}

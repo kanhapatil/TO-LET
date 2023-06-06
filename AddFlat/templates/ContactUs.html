@@ -1,4 +1,4 @@
-{% extends '../Base.html' %}
+{% extends 'Base.html' %}
 {% block content %}
 
 <style>
@@ -41,37 +41,33 @@
   .heading{
     color: crimson;
     font-weight: 700;
-}
-
-.LogInFontStyle{
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-size: 17px;
+  
 }
 </style>
 
-<form method="POST" class="form1 mt-5 LogInFontStyle" enctype="multipart/form-data">{% csrf_token %}
-    <h3 class="heading">User Login</h3>
-    <label for="email" style="margin-top: 15px;">Email</label>
+<form method="POST" class="form1 mt-5" enctype="multipart/form-data">{% csrf_token %}
+    <h3 class="heading">Contact Us</h3>
+    <label for="name" style="margin-top: 15px;">Name</label>
+    <input class="input1" type="text" name="name" id="name" placeholder="Your name" required>
+
+    <label for="email">Email</label>
     <input class="input1" type="email" id="email" name="email" placeholder="Your email" required>
 
-    <label for="pwd">Password</label>
-    <input class="input1" type="password" id="pwd" name="pwd" placeholder="Your password" required>
+    <label for="sub">Subject</label>
+    <input class="input1" type="text" id="sub" name="sub" placeholder="Your subject" required>
 
-    <input type="submit" value="Login" class="mt-3 btn btn-outline-danger form-control">
-    <p style="color: white; margin-top: 5px;">Don't have an account? <a href="/usersignup" style="text-decoration: none;">Signup</a></p>
+    <label for="msg">Message</label>
+    <textarea class="input1" name="msg" id="msg" cols="30" rows="7" placeholder="Your message" required></textarea>
+
+    <input type="submit" value="Send message" class="mt-3 btn btn-outline-danger form-control">
 </form>
 
   <!----------------------Java script code--------------------------->
   {% if error == "no" %}
   <script>
-    alert("Login Successfully");
-    window.location = '{% url "userdashoard" %}'
+    alert("Send Message Successfully");
+    window.location = '{% url "contactus" %}'
   </script>
-
-  {% elif error == "not" %}
-    <script>
-      alert("Your Status is Pending, Please talk to admin");
-    </script>
     
   {% elif error == "yes" %}
   <script>

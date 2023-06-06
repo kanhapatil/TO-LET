@@ -30,7 +30,8 @@ urlpatterns = [
     path('deleteflat/<int:pid>', DeleteFlat, name="deleteflat"),
     path('editflat/<int:pid>', EditFlat, name="editflat"),
     path('viewflat/<int:pid>', ViewFlat, name="viewflat"),
-
+    path('contactus/', ContactUs, name="contactus"),
+    path('aboutus/', AboutUs, name="aboutus"),
     # Path's for user
     path('usersignup/', UserSignup, name="usersignup"),
     path('userlogin/', UserLogin, name="userlogin"),

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from .models import FlatOwner, AddFlat, UserModel
+from .models import FlatOwner, AddFlat, UserModel, Contact
 from django.contrib.auth import authenticate, login, logout
 
 # HOME PAGE FUNCTION
@@ -216,3 +216,26 @@ def UserLogin(request):
 # USER DASHBOARD
 def Userdashoard(request):
     return render(request, "UserPages/Userdashoard.html")
+
+
+# CONTACT US FUNCTION
+def ContactUs(request):
+    error = ""
+    if request.method == 'POST':
+        name = request.POST['name']
+        email = request.POST['email']
+        subject = request.POST['sub']
+        message = request.POST['msg']
+
+        try:
+            Contact.objects.create(name=name, email=email, subject=subject, message=message)
+            error = "no"
+        except:
+            error = "yes"
+    context = {'error':error}
+    return render(request, 'ContactUs.html', context)
+
+
+# ABOUT US FUNCTION
+def AboutUs(request):
+    return render(request, "AboutUs.html")

@@ -42,9 +42,14 @@
     color: crimson;
     font-weight: 700;
 }
+
+.SignupFontStyle{
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 17px;
+}
 </style>
 
-<form method="POST" class="form1 mt-5" enctype="multipart/form-data">{% csrf_token %}
+<form method="POST" class="form1 mt-5 SignupFontStyle" enctype="multipart/form-data">{% csrf_token %}
     <h3 class="heading">User Registration</h3>
     <div class="row" style="margin-top: 15px;">
         <div class="col-md-6">
