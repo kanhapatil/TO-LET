@@ -5,10 +5,9 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'myfirst.css' %}">
 
-
 <div class="container container1 mt-5">
     <div class="row HFontStyle">
-        {% for data in flat_data %}
+        {% for data in flats %}
         <div class="card1">
             <img src="{{data.image.url}}" alt="Flat Image" class="card1-img">
             <div class="mt-2 ">
@@ -21,10 +20,10 @@
 
             <div class="booknow">
                 <a href="{% url 'viewflat' data.id %}" class="btn btn-outline-danger">Book Now</a>
-
-                <!-- <a href="#" class="btn btn-outline-danger">Hold Now</a> -->
             </div>
         </div>
+        {% empty %}
+            {% include "NoFlat.html" %}
         {% endfor %}
     </div>
 </div>

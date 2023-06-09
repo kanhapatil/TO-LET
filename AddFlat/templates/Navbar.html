@@ -26,9 +26,9 @@
         </ul>
 
         <!--Search button-->
-        <form class="d-flex">
-          <input class="form-control me-2 FStyle" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-danger FStyle" type="submit">Search</button>
+        <form class="d-flex" action="/" method="get">
+          <input class="form-control me-2 FStyle" type="text" name="filter" {% if not filter_criteria %} placeholder="Ex : City, Min-Price, Max-Price" {% else %} value="{{filter_criteria}}" {% endif %}>
+          <button class="btn btn-outline-danger FStyle" type="submit">Filter</button>
         </form>
       </div>
     </div>
