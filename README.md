@@ -7,7 +7,7 @@
 
 - **Flat Listing:** Service providers can create accounts and add flats for rent. They can provide detailed information about each flat, including images, description, amenities, and pricing.
 
-- **Search and Filter Functionality:** Users can search for flats based on various criteria such as **City name + Price range(min-max)**, etc. They can also apply filters to narrow down the search results.
+- **Search and Filter Functionality:** Users can search for flats based on various criteria such as **city name + price range(min-max)**.
 
 - **Note:** Some features will be adding soon. And project is not completed yet.
 
