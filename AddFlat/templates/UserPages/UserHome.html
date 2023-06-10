@@ -1,0 +1,33 @@
+{% extends 'Base.html' %}
+{% block content %} 
+
+<!-------------------Load static file "HomePage.css"----------------------->
+{% load static %}
+<link rel="stylesheet" href="{% static 'HomePage.css' %}">
+
+<div class="container container1 mt-5">
+    <div class="row HFontStyle">
+        
+            {% for data in flats %}
+                <div class="card1">
+                    <img src="{{data.image.url}}" alt="Flat Image" class="card1-img">
+                    <div class="mt-2 ">
+                        <h4 style="color: white;"><b>Price : ₹{{data.price}}</b></h4> 
+                        <p style="color: whitesmoke;">City : {{data.city}}</p>
+                        <p style="color: whitesmoke;">Address : {{data.address}}</p> 
+                        <p style="color: whitesmoke;">Flat-Type : {{data.flat_type}}</p> 
+                        <p style="color: whitesmoke;" class="limited-text">Description : {{data.desc}}</p>
+                    </div>
+
+                    <div class="booknow">
+                        <a href="{% url 'viewflat' data.id %}" class="btn btn-outline-danger">Book Now</a>
+                    </div>
+                </div>
+            {% empty %}
+                {% include "NoFlat.html" %}
+            {% endfor %}
+        
+    </div>
+</div>
+
+{% endblock content %}

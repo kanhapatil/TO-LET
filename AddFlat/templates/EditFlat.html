@@ -1,9 +1,9 @@
-{% include 'OwnerNavbar.html' %}
+{% include 'Navbars/OwnerNavbar.html' %}
 {% block content %} 
 
 <!------------------Load css file----------------------->
 {% load static %}
-<link rel="stylesheet" href="{% static 'myfirst.css' %}">
+<link rel="stylesheet" href="{% static 'SignupLoginPage.css' %}">
 
 
 <form method="POST" class="form1 mt-5" enctype="multipart/form-data">{% csrf_token %}

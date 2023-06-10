@@ -1,0 +1,28 @@
+.container-view{
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 70%;
+    background-color: black;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container-view:hover{
+    box-shadow: 0 6px 10px 0 rgba(11, 11, 11, 0.458);
+}
+
+.container-view-img{
+    margin-top: 12px;
+    width: 98%;
+    height: 337px;
+    margin-bottom: 12px;
+}
+
+.content{
+    margin-top: 12px;
+}
+
+@media screen and (max-width:765px) {
+    .container-view-img {
+        margin-left: 4px;
+    }
+}

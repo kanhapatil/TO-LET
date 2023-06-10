@@ -3,31 +3,11 @@ from django.contrib.auth.models import User
 from .models import FlatOwner, AddFlat, UserModel, Contact
 from django.contrib.auth import authenticate, login, logout
 
-# HOME PAGE FUNCTION
+# ALL FLATS PAGE FUNCTION
 def Home(request):
-    filter_criteria = request.GET.get('filter')
-    flats = AddFlat.objects.all()
-
-    if filter_criteria:
-        # Extract the filter criteria from the input
-        filter_parts = filter_criteria.split(',')
-        city = filter_parts[0].strip()
-        min_price = filter_parts[1].strip() if len(filter_parts) > 1 else None
-        max_price = filter_parts[2].strip() if len(filter_parts) > 2 else None
-
-        if city:
-            flats = flats.filter(city__icontains=city)
-
-        if min_price:
-            flats = flats.filter(price__gte=min_price)
-
-        if max_price:
-            flats = flats.filter(price__lte=max_price)
-
-    context = {
-        'flats': flats,
-        'filter_criteria': filter_criteria,
-    }
+    OneFlat = AddFlat.objects.get(id=5)
+    
+    context = {'data':OneFlat}
     return render(request, 'Home.html', context)
 
 
@@ -234,8 +214,35 @@ def UserLogin(request):
 
 
 # USER DASHBOARD
-def Userdashoard(request):
-    return render(request, "UserPages/Userdashoard.html")
+def UserHome(request):
+    if not request.user.is_authenticated:
+        return redirect("userlogin")
+    
+    filter_criteria = request.GET.get('filter')
+    flats = AddFlat.objects.all()
+
+    if filter_criteria:
+        # Extract the filter criteria from the input
+        filter_parts = filter_criteria.split(',')
+        city = filter_parts[0].strip()
+        min_price = filter_parts[1].strip() if len(filter_parts) > 1 else None
+        max_price = filter_parts[2].strip() if len(filter_parts) > 2 else None
+
+        if city:
+            flats = flats.filter(city__icontains=city)
+
+        if min_price:
+            flats = flats.filter(price__gte=min_price)
+
+        if max_price:
+            flats = flats.filter(price__lte=max_price)
+
+    context = {
+        'flats': flats,
+        'filter_criteria': filter_criteria,
+    }
+
+    return render(request, "UserPages/UserHome.html", context)
 
 
 # CONTACT US FUNCTION

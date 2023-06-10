@@ -2,7 +2,6 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'myfirst.css' %}">
 
-
 <nav class="navbar navbar-expand-lg navbar-dark bg">
     <div class="container">
       <a class="navbar-brand FStyle" href="/" style="font-weight: 700; font-size: 22px; color: white;">TO<span style="color: crimson; font-weight: 700;">LET</span></a>
@@ -10,23 +9,25 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
+        
+        <a class="nav-link active" aria-current="page" style="margin-left: 15px; color: white; font-weight: 800;">{{request.user.first_name}} {{request.user.last_name}}</a>
+        
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 FStyle">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
+            <a class="nav-link active" aria-current="page" href="/userhome">Home</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Change-password</a>
           </li>
           
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/userlogin">User-Login</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/ownerlogin" style="margin-right: 15px;">Staff-Login</a>
+            <a class="nav-link active" aria-current="page" href="/Logout" style="margin-right: 15px;">Logout</a>
           </li>
         </ul>
 
         <!--Search button-->
-        <form class="d-flex" action="/" method="get">
+        <form class="d-flex" method="get">
           <input class="form-control me-2 FStyle" type="text" name="filter" {% if not filter_criteria %} placeholder="Ex : City, Min-Price, Max-Price" {% else %} value="{{filter_criteria}}" {% endif %}>
           <button class="btn btn-outline-danger FStyle" type="submit">Filter</button>
         </form>
