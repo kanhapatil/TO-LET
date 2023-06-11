@@ -1,7 +1,28 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <!------------------Load css file----------------------->
 {% load static %}
 <link rel="stylesheet" href="{% static 'myfirst.css' %}">
 
+<style>
+    .footer-icon {
+        padding: 12px;
+        margin-right: 10px;
+        background-color: whitesmoke;
+        color: rgb(44, 43, 43);
+        border-radius: 100px;
+        font-size: 16px;
+        font-weight: 800;
+        text-decoration: none;
+        list-style: none;
+        transition: 0.5s ease-in;
+    }
+
+    .footer-icon:hover {
+        color: white;
+        border-radius: 100px;
+    }
+</style>
 
 <footer class="mt-4">
   <div class="container">
@@ -40,6 +61,17 @@
         <div class="col-md-8">
             <div class="mt-2 pb-4" style="color: whitesmoke;">
                 © 2023 Something. All rights reserved.
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="icons">
+                <ul>
+                    <a href="https://www.instagram.com/k___a_n_h_a/?hl=en" target="_blank"><li class="fa fa-instagram footer-icon"></li></a>
+                    <a href="https://www.linkedin.com/in/kanha-patil-969884218/" target="_blank"><li class="fa fa-linkedin footer-icon"></li></a>
+                    <a href="tel:9111715245"><li class="fa fa-phone footer-icon" style="padding-left: 14px;"></li></a>
+                    <a href="mailto:kanhap56@gmail.com"><li class="fa fa-envelope footer-icon"></li></a>
+                </ul>
             </div>
         </div>
       </div>

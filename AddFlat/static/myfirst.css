@@ -5,26 +5,6 @@
   }
 
 
-
-/*****************About us page styling*******************/
-.font {
-    margin-top: 20px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: 900;
-}
-
-.para {
-    color: black;
-    font-size: 18px;
-}
-
-ol li {
-    line-height: 1.4;
-    margin-top: 10px;
-    color: rgb(72, 72, 72);
-}
-
-
 /*********************View Flat Page Styling*********************/
 .container-view{
     border: 1px solid black;
@@ -81,10 +61,9 @@ p{
 
 .f-para {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    color: #737373;;
+    color: #737373;
     font-size: 17px;
 }
-
 
 /**************Navbar Page Styling***************/
 ul li:hover{

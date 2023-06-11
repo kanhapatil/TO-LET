@@ -2,93 +2,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-<style>
-    .FStyle {
-        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-        font-weight: 700; 
-        font-size: 22px; 
-        color: white !important;
-        text-align: center;
-    }
-    
-    .hero-container {
-        background-color: crimson;
-        height: 410px;
-    }
-
-    .foot {
-        width: 70%;
-        height: 90px;
-        position: relative;
-        background-color: white;
-    }
-
-    .card-img {
-        margin-top: 10px;
-        margin-left: 10px;
-        width: 92.5%;
-        height: 150px;
-    }
-
-    .card {
-        background-color: black;
-        color: white;
-    }
-    .inside-left {
-        width: 60%;
-    }
-
-    .inside-right {
-        width: 45%;
-    }
-
-    .inside-center {
-        text-align: center;
-        width: 45%;
-    }
-
-    .foot ul li {
-        display: inline;
-    }
-
-    .hero-btn {
-        background-color: black;
-        transition: 0.6s ease;
-    }
-
-    .hero-btn:hover{
-        background-color: crimson;
-        color: black;
-        border: 2px solid black;
-    }
-
-    .hero-text {
-        color: whitesmoke;
-        font-size: 17px;
-    }
-
-    .social-icon {
-        padding-top: 30px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .hero-icon {
-        padding: 12px;
-        margin-right: 10px;
-        background-color: crimson;
-        color: white;
-        border-radius: 50px;
-        font-size: 30px;
-        text-decoration: none;
-        list-style: none;
-        transition: 0.5s ease-in;
-    }
-</style>
+{% load static %}
+<link rel="stylesheet" href="{% static 'HomePage.css' %}">
 
 <section>
-
     {% include "Navbars/HomeNav.html" %}
 
     <div class="container mt-4 mb-2 hero-container"><br>

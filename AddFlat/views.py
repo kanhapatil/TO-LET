@@ -37,7 +37,7 @@ def OwnerSignup(request):
             error = "yes"
 
     d = {'error':error}
-    return render(request, 'OwnerSignup.html', d)
+    return render(request, 'OwnerPages/OwnerSignup.html', d)
 
 
 # OWNER LOGIN PAGE FUNCTION
@@ -60,7 +60,7 @@ def OwnerLogin(request):
             error = "yes"
             
     d = {'error':error}
-    return render(request, 'OwnerLogin.html', d)
+    return render(request, 'OwnerPages/OwnerLogin.html', d)
 
 
 # OWNER LOGOUT FUNCTION
@@ -69,6 +69,19 @@ def Logout(request):
         return redirect("ownerlogin")
     logout(request)
     return redirect('/')
+
+
+# OWNER DASHBOARD
+def OwnerDashBoard(request):
+    if not request.user.is_authenticated:
+        return redirect("ownerlogin")
+    
+    user = request.user
+    owner = FlatOwner.objects.get(user=user)
+    data = AddFlat.objects.filter(owner=owner)
+    d = {'data':data}
+    
+    return render(request, "OwnerPages/OwnerDashboard.html",d)
 
 
 # ADD FLATS
@@ -96,19 +109,7 @@ def Add_Flat(request):
             error = "yes" 
 
     d = {'error': error} 
-    return render(request, 'AddFlats.html', d) 
-
-
-# OWNER DASHBOARD
-def OwnerDashBoard(request):
-    if not request.user.is_authenticated:
-        return redirect("ownerlogin")
-    
-    user = request.user
-    owner = FlatOwner.objects.get(user=user)
-    data = AddFlat.objects.filter(owner=owner)
-    d = {'data':data}
-    return render(request, "OwnerDashboard.html",d)
+    return render(request, 'OwnerPages/AddFlats.html', d) 
 
 
 # DELETE ADDED FLAT
@@ -150,7 +151,7 @@ def EditFlat(request, pid):
             error = "yes"        
             
     d = {'ID':ID, 'error':error}
-    return render(request, 'EditFlat.html', d)
+    return render(request, 'OwnerPages/EditFlat.html', d)
 
 
 # VIEW FLAT FUNCTION
@@ -213,34 +214,39 @@ def UserLogin(request):
     return render(request, 'UserPages/UserLogin.html', d)
 
 
-# USER DASHBOARD
+# USER HOME
 def UserHome(request):
     if not request.user.is_authenticated:
         return redirect("userlogin")
     
-    filter_criteria = request.GET.get('filter')
-    flats = AddFlat.objects.all()
+    try: 
+        UserModel.objects.get(user=request.user)
 
-    if filter_criteria:
-        # Extract the filter criteria from the input
-        filter_parts = filter_criteria.split(',')
-        city = filter_parts[0].strip()
-        min_price = filter_parts[1].strip() if len(filter_parts) > 1 else None
-        max_price = filter_parts[2].strip() if len(filter_parts) > 2 else None
+    
+        filter_criteria = request.GET.get('filter')
+        flats = AddFlat.objects.all()
 
-        if city:
-            flats = flats.filter(city__icontains=city)
+        if filter_criteria:
+            # Extract the filter criteria from the input
+            filter_parts = filter_criteria.split(',')
+            city = filter_parts[0].strip()
+            min_price = filter_parts[1].strip() if len(filter_parts) > 1 else None
+            max_price = filter_parts[2].strip() if len(filter_parts) > 2 else None
 
-        if min_price:
-            flats = flats.filter(price__gte=min_price)
+            if city:
+                flats = flats.filter(city__icontains=city)
 
-        if max_price:
-            flats = flats.filter(price__lte=max_price)
+            if min_price and max_price:
+                flats = flats.filter(price__range=(min_price, max_price))
 
-    context = {
-        'flats': flats,
-        'filter_criteria': filter_criteria,
-    }
+    
+
+        context = {
+            'flats': flats,
+            'filter_criteria': filter_criteria,
+        }
+    except:
+        return redirect('/userlogin')
 
     return render(request, "UserPages/UserHome.html", context)
 
