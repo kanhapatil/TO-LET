@@ -60,6 +60,17 @@
             <textarea class="input1" name="desc" id="desc" cols="30" rows="5" placeholder="About Your Flat">{{ID.desc}}</textarea>
         </div>
     </div>
+
+    <div class="col-md-6"  style="display: inline;">
+        <label for="status">Change status</label>
+
+        <select name="status" required>
+            <option value="{{ID.status}}">{{ID.flatstatus}}</option>
+            <option value="Hide">Hide Flat</option>
+            <option value="Show">Show Flat</option>
+            
+        </select>
+    </div>
   
     <input type="submit" value="Update" class="mt-3 btn btn-outline-danger form-control">
 </form>

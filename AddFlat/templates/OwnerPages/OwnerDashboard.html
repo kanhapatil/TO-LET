@@ -17,6 +17,7 @@
                 <th>Type</th> 
                 <th>Contact</th>
                 <th>Description</th>
+                <th>Status</th>
                 <th>Action</th> 
             </tr>
         </thead>
@@ -31,6 +32,7 @@
                 <td>{{i.flat_type}}</td> 
                 <td>{{i.contact}}</td> 
                 <td class="data-hide">{{i.desc}}</td> 
+                <td>{{i.flatstatus}}</td>
                 <td> 
                     <a href="{% url 'editflat' i.id %}" class="btn btn-outline-warning">Edit</a>
                     <a href="{% url 'deleteflat' i.id %}" onclick="return confirm('Are you sure? You are deleting your added flat')" class="btn btn-outline-danger">Delete</a>

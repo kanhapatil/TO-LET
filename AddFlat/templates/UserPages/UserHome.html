@@ -1,33 +1,98 @@
 {% extends 'Base.html' %}
 {% block content %} 
 
-<!-------------------Load static file "HomePage.css"----------------------->
-{% load static %}
-<link rel="stylesheet" href="{% static 'UserHomePage.css' %}">
+<style>
+    .card-container {
+        width: 80%;
+        margin: 0px auto;
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
 
-<div class="container container1 mt-5">
-    <div class="row HFontStyle">
+    .card {
+        display: flex;
+        flex-basis: 272px; /* Set the initial width of each card */
+        margin: 10px; /* Add some margin between cards */
+        flex-direction: column;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        background-color: black;
+        box-shadow: 3px 4px rgba(0, 0, 0, 0.4);;
+        color: white;
+        transition: 0.6s ease-in;
+    }
+    
+    .card:hover{
+        transform: translateY(-10px);
+        box-shadow: 3px 4px rgba(0, 0, 0, 1);
+    }
+
+    .card-btn {
+        transition: 0.6s ease-in;
+    }
+
+    .card-btn:hover{
+        background-color: crimson;
+    }
+
+    .card img {
+        width: 100%;
+        height: 180px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .card-content {
+        flex-grow: 1;
+    }
+
+    .card-content p {
+        font-size: 14px;
+        margin-bottom: 10px;
+        white-space: nowrap; 
+        overflow: hidden; 
+        text-overflow: ellipsis;
+        color: whitesmoke;
+    }
+
+    @media (max-width: 768px) {
+    .card {
+        flex-basis: calc(50% - 20px); /* Adjust the width to fit two cards in a row */
+        }
+    }
+
+    @media (max-width: 480px) {
+    .card {
+        flex-basis: 100%; /* Make the cards take up the full width on smaller screens */
+        }
+    }
+</style>
+
+
+<div class="card-container">
+    {% for data in flats %}
+        {% if data.flatstatus == "Show" %}
+            <div class="card">
+                <img src="{{data.image.url}}" alt="Card Image">
         
-            {% for data in flats %}
-                <div class="card1">
-                    <img src="{{data.image.url}}" alt="Flat Image" class="card1-img">
-                    <div class="mt-2 ">
-                        <h4 style="color: white;"><b>Price : ₹{{data.price}}</b></h4> 
-                        <p style="color: whitesmoke;">City : {{data.city}}</p>
-                        <p style="color: whitesmoke;">Address : {{data.address}}</p> 
-                        <p style="color: whitesmoke;">Flat-Type : {{data.flat_type}}</p> 
-                        <p style="color: whitesmoke;" class="limited-text">Description : {{data.desc}}</p>
-                    </div>
-
-                    <div class="booknow">
-                        <a href="{% url 'viewflat' data.id %}" class="btn btn-outline-danger">Book Now</a>
-                    </div>
+                <div class="card-content">
+                    <h4><b>Price : ₹{{data.price}}</b></h4> 
+                    <p>City : {{data.city}}</p>
+                    <p>Address : {{data.address}}</p> 
+                    <p>Flat-Type : {{data.flat_type}}</p> 
+                    <p class="limited-text">Description : {{data.desc}}</p>
+        
+                    <a href="{% url 'viewflat' data.id %}" class="btn btn-outline-danger card-btn">Book Now</a>
                 </div>
-            {% empty %}
-                {% include "NoFlat.html" %}
-            {% endfor %}
-        
-    </div>
-</div>
-
+            </div>
+        {% endif %}
+    {% empty %}
+        {% include "NoFlat.html" %}
+    {% endfor %}
+  </div>
+  
 {% endblock content %}

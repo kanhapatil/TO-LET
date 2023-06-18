@@ -136,6 +136,7 @@ def EditFlat(request, pid):
         img = request.FILES['image']
         c = request.POST['city']
         des = request.POST['desc']
+        sts = request.POST['status']
 
         try:
             ID.address = add
@@ -145,6 +146,7 @@ def EditFlat(request, pid):
             ID.desc = des
             ID.city = c
             ID.image = img
+            ID.flatstatus = sts
             ID.save()
             error = "no"
         except:

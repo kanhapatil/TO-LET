@@ -22,6 +22,7 @@ class AddFlat(models.Model):
     image = models.FileField(upload_to="media", null=True)
     city = models.CharField(max_length=200, null=True)
     desc = models.TextField()
+    flatstatus = models.CharField(max_length=50, null=True)
 
     def __str__(self):
         return self.address
