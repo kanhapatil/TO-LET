@@ -225,27 +225,40 @@ def UserHome(request):
         UserModel.objects.get(user=request.user)
 
     
-        filter_criteria = request.GET.get('filter')
+        city = request.GET.get('filterCity')
+        address = request.GET.get('filterAddress')
+        minprice = request.GET.get('filterMinPrice')
+        maxprice = request.GET.get('filterMaxPrice')
+        flattype = request.GET.get('filterType')
+
         flats = AddFlat.objects.all()
 
-        if filter_criteria:
+        if city:
             # Extract the filter criteria from the input
-            filter_parts = filter_criteria.split(',')
-            city = filter_parts[0].strip()
-            min_price = filter_parts[1].strip() if len(filter_parts) > 1 else None
-            max_price = filter_parts[2].strip() if len(filter_parts) > 2 else None
+            # filter_parts = filter_criteria.split(',')
+            # city = filter_parts[0].strip()
+            # min_price = filter_parts[1].strip() if len(filter_parts) > 1 else None
+            # max_price = filter_parts[2].strip() if len(filter_parts) > 2 else None
+            flats = flats.filter(city__icontains=city)
 
-            if city:
-                flats = flats.filter(city__icontains=city)
+            # if min_price and max_price:
+            #     flats = flats.filter(price__range=(min_price, max_price))
 
-            if min_price and max_price:
-                flats = flats.filter(price__range=(min_price, max_price))
-
+        if address:
+            flats = flats.filter(address__icontains=address)
     
+        if minprice:
+            flats = flats.filter(price__gte=minprice)
 
+        if maxprice:
+            flats = flats.filter(price__lte=maxprice)
+
+        if flattype:
+            flats = flats.filter(flat_type__icontains=flattype)
+            
         context = {
             'flats': flats,
-            'filter_criteria': filter_criteria,
+            'city': city,
         }
     except:
         return redirect('/userlogin')

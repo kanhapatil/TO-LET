@@ -1,13 +1,11 @@
 {% extends 'Base.html' %}
 {% block content %} 
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
     .card-container {
-        width: 80%;
-        margin: 0px auto;
         margin-top: 40px;
         display: flex;
-        justify-content: center;
+        justify-content: right;
         justify-content: space-between;
         flex-wrap: wrap;
     }
@@ -21,7 +19,7 @@
         border-radius: 5px;
         padding: 10px;
         background-color: black;
-        box-shadow: 3px 4px rgba(0, 0, 0, 0.4);;
+        box-shadow: 3px 4px rgba(0, 0, 0, 0.4);
         color: white;
         transition: 0.6s ease-in;
     }
@@ -59,6 +57,38 @@
         color: whitesmoke;
     }
 
+    .right {
+        position: fixed;
+        right: 60px;
+        margin-top: 50px;
+        height: 410px;
+        box-shadow: 0px 0px 3px 4px rgba(0, 0, 0, 0.278);
+        margin-bottom: 20px;
+    }
+
+    input {
+        height: 40px;
+    }
+
+    .filter-btn {
+        width: 98%;
+    }
+
+    .icon {
+        width: 90px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        color: rgba(23, 23, 23, 0.668);
+    }
+
+    .container-fluide {
+        width: 93%;
+        margin: 0px auto;
+    }
+
+    
     @media (max-width: 768px) {
     .card {
         flex-basis: calc(50% - 20px); /* Adjust the width to fit two cards in a row */
@@ -73,26 +103,57 @@
 </style>
 
 
-<div class="card-container">
-    {% for data in flats %}
-        {% if data.flatstatus == "Show" %}
-            <div class="card">
-                <img src="{{data.image.url}}" alt="Card Image">
-        
-                <div class="card-content">
-                    <h4><b>Price : ₹{{data.price}}</b></h4> 
-                    <p>City : {{data.city}}</p>
-                    <p>Address : {{data.address}}</p> 
-                    <p>Flat-Type : {{data.flat_type}}</p> 
-                    <p class="limited-text">Description : {{data.desc}}</p>
-        
-                    <a href="{% url 'viewflat' data.id %}" class="btn btn-outline-danger card-btn">Book Now</a>
+<div class="container-fluide row">
+    <div class="card-container col-md-8">
+        {% for data in flats %}
+            {% if data.flatstatus == "Show" %}
+                <div class="card">
+                    <img src="{{data.image.url}}" alt="Card Image">
+            
+                    <div class="card-content">
+                        <h4><b>Price : ₹{{data.price}}</b></h4> 
+                        <p>City : {{data.city}}</p>
+                        <p>Address : {{data.address}}</p> 
+                        <p>Flat-Type : {{data.flat_type}}</p> 
+                        <p class="limited-text">Description : {{data.desc}}</p>
+            
+                        <a href="{% url 'viewflat' data.id %}" class="btn btn-outline-danger card-btn">Book Now</a>
+                    </div>
                 </div>
+            {% endif %}
+        {% empty %}
+            {% include "NoFlat.html" %}
+        {% endfor %}
+      </div>
+
+      <div class="right col-md-3 offset-1">
+        <h4 class="mt-3 mb-4"><b>Apply Filters</b></h4>
+
+        <form method="get">
+            <div class="d-flex">
+                <input class="form-control me-2 FStyle" type="text" name="filterCity" {% if not filter_criteria %} placeholder="Filter city" {% else %} value="{{city}}" {% endif %}>
             </div>
-        {% endif %}
-    {% empty %}
-        {% include "NoFlat.html" %}
-    {% endfor %}
-  </div>
+
+            <div class="d-flex mt-3">
+                <input class="form-control me-2 FStyle" type="text" name="filterAddress" {% if not filter_criteria %} placeholder="Filter address" {% else %} value="{{address}}" {% endif %}>
+            </div>
+
+            <div class="d-flex mt-3">
+                <input class="form-control me-2 FStyle" type="text" name="filterMinPrice" {% if not filter_criteria %} placeholder="Filter min price" {% else %} value="{{price}}" {% endif %}>
+            </div>
+
+            <div class="d-flex mt-3">
+                <input class="form-control me-2 FStyle" type="text" name="filterMaxPrice" {% if not filter_criteria %} placeholder="Filter max price" {% else %} value="{{price}}" {% endif %}>
+            </div>
+
+            <div class="d-flex mt-3">
+                <input class="form-control me-2 FStyle" type="text" name="filterType" {% if not filter_criteria %} placeholder="Filter flat type" {% else %} value="{{price}}" {% endif %}>
+            </div>
+
+            <button class="btn btn-outline-danger FStyle mt-3 filter-btn" type="submit">Apply</button>
+          </form>
+      </div>
+</div>
   
 {% endblock content %}
+

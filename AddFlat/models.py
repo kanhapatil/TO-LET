@@ -17,7 +17,7 @@ class AddFlat(models.Model):
     owner = models.ForeignKey(FlatOwner, on_delete=models.CASCADE)
     address = models.CharField(max_length=300)
     contact = models.CharField(max_length=20)
-    price = models.CharField(max_length=50)
+    price = models.IntegerField()
     flat_type = models.CharField(max_length=30, null=True)
     image = models.FileField(upload_to="media", null=True)
     city = models.CharField(max_length=200, null=True)
