@@ -35,50 +35,7 @@
 }
 
 /****************Footer Page Styling********************/
-footer{
-    bottom: 0%;
-    width: 100%;
-    background-color: black;
-    padding-top: 40px;
-}
 
-h6{
-    color:#fff;
-    font-size:16px;
-    text-transform:uppercase;
-    margin-top:5px;
-    letter-spacing:2px
-}
-
-p{
-    color:#737373
-}
-
-.Links {
-    text-decoration: none;
-    color: #737373;
-}
-
-.f-para {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    color: #737373;
-    font-size: 17px;
-}
-
-/**************Navbar Page Styling***************/
-ul li:hover{
-    background-color: crimson;
-    transition: 1s;
-    border-radius: 10px;
-}
-
-ul li a:active{
-  color:#3366cc;
-}
-
-.bg{
-  background-color: black;
-}
 
 
 /*************Owner Dashboard Styling*******************/

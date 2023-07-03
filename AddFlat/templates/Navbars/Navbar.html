@@ -1,6 +1,20 @@
-<!------------------Load css file----------------------->
-{% load static %}
-<link rel="stylesheet" href="{% static 'myfirst.css' %}">
+<!------------------|| Start Navbar Styling ||----------------------->
+<style>
+    ul li:hover {
+      background-color: crimson;
+      transform: 1s;
+      border-radius: 10px;
+    }
+
+    .bg {
+      background-color: black;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1;
+    }
+</style>
+<!------------------|| End Navbar Styling ||----------------------->
 
 <nav class="navbar navbar-expand-lg navbar-dark bg">
     <div class="container">
@@ -25,12 +39,6 @@
             <a class="nav-link active" aria-current="page" href="/Logout" style="margin-right: 15px;">Logout</a>
           </li>
         </ul>
-
-        <!--Search button-->
-        <!-- <form class="d-flex" method="get">
-          <input class="form-control me-2 FStyle" type="text" name="filter" {% if not filter_criteria %} placeholder="Ex : City, Min-Price, Max-Price" {% else %} value="{{filter_criteria}}" {% endif %}>
-          <button class="btn btn-outline-danger FStyle" type="submit">Filter</button>
-        </form> -->
       </div>
     </div>
 </nav>

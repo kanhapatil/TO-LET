@@ -16,7 +16,7 @@
         margin: 10px; /* Add some margin between cards */
         flex-direction: column;
         border: 1px solid #ccc;
-        border-radius: 5px;
+        /* border-radius: 5px; */
         padding: 10px;
         background-color: black;
         box-shadow: 3px 4px rgba(0, 0, 0, 0.4);
@@ -103,7 +103,7 @@
 </style>
 
 
-<div class="container-fluide row">
+<div class="container-fluide row mt-5">
     <div class="card-container col-md-8">
         {% for data in flats %}
             {% if data.flatstatus == "Show" %}
