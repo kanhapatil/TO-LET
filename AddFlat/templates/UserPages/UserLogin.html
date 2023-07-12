@@ -5,9 +5,15 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'SignupLoginPage.css' %}">
 
+<style>
+  .form1 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+</style>
+
 {% include "Navbars/HomeNav.html" %}
 
-<form method="POST" class="form1 mt-5 mb-1 LogInFontStyle" enctype="multipart/form-data">{% csrf_token %}
+<form method="POST" class="form1 mt-5 mb-1" enctype="multipart/form-data">{% csrf_token %}
     <h3 class="heading">User Login</h3>
     <label for="email" style="margin-top: 15px;">Email</label>
     <input class="input1" type="email" id="email" name="email" placeholder="Your email" required>
@@ -19,7 +25,7 @@
     <p style="color: white; margin-top: 5px;">Don't have an account? <a href="/usersignup" style="text-decoration: none;">Signup</a></p>
 </form><br>
 
-  <!----------------------Java script code--------------------------->
+<!----------------------Java script code--------------------------->
   {% if error == "no" %}
   <script>
     alert("Login Successfully");

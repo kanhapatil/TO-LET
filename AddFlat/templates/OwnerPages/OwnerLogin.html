@@ -6,6 +6,12 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'SignupLoginPage.css' %}"> 
 
+<style>
+  .form1 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+</style>
+
 {% include "Navbars/HomeNav.html" %}
 
 <form method="POST" class="form1 mt-5 mb-1" enctype="multipart/form-data">{% csrf_token %}

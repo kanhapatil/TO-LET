@@ -3,9 +3,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
     .card-container {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         margin-top: 40px;
         display: flex;
-        justify-content: right;
         justify-content: space-between;
         flex-wrap: wrap;
     }
@@ -16,7 +16,6 @@
         margin: 10px; /* Add some margin between cards */
         flex-direction: column;
         border: 1px solid #ccc;
-        /* border-radius: 5px; */
         padding: 10px;
         background-color: black;
         box-shadow: 3px 4px rgba(0, 0, 0, 0.4);
@@ -60,18 +59,20 @@
     .right {
         position: fixed;
         right: 60px;
-        margin-top: 50px;
+        margin-top: 55px;
         height: 410px;
         box-shadow: 0px 0px 3px 4px rgba(0, 0, 0, 0.278);
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         margin-bottom: 20px;
     }
 
-    input {
+    input, .filter-btn {
         height: 40px;
+        margin-left: 7px;
     }
 
     .filter-btn {
-        width: 98%;
+        width: 96%;
     }
 
     .icon {
@@ -88,46 +89,41 @@
         margin: 0px auto;
     }
 
+    @media (max-width: 980px) {
+        .right {
+            width: 48%;
+            margin-left: 10px;
+        }
+    }
     
     @media (max-width: 768px) {
     .card {
         flex-basis: calc(50% - 20px); /* Adjust the width to fit two cards in a row */
         }
+
+    .right {
+        width: 100%;
+        margin-left: 9%;
+        position: relative;
+    }
     }
 
+    
     @media (max-width: 480px) {
     .card {
         flex-basis: 100%; /* Make the cards take up the full width on smaller screens */
         }
+
+    .right {
+        margin-left: 16%;
+    }
     }
 </style>
 
 
 <div class="container-fluide row mt-5">
-    <div class="card-container col-md-8">
-        {% for data in flats %}
-            {% if data.flatstatus == "Show" %}
-                <div class="card">
-                    <img src="{{data.image.url}}" alt="Card Image">
-            
-                    <div class="card-content">
-                        <h4><b>Price : ₹{{data.price}}</b></h4> 
-                        <p>City : {{data.city}}</p>
-                        <p>Address : {{data.address}}</p> 
-                        <p>Flat-Type : {{data.flat_type}}</p> 
-                        <p class="limited-text">Description : {{data.desc}}</p>
-            
-                        <a href="{% url 'viewflat' data.id %}" class="btn btn-outline-danger card-btn">Book Now</a>
-                    </div>
-                </div>
-            {% endif %}
-        {% empty %}
-            {% include "NoFlat.html" %}
-        {% endfor %}
-      </div>
-
-      <div class="right col-md-3 offset-1">
-        <h4 class="mt-3 mb-4"><b>Apply Filters</b></h4>
+    <div class="right col-md-3 offset-1">
+        <h4 class="mt-3 mb-4" style="margin-left: 7px;"><b>Apply Filters</b></h4>
 
         <form method="get">
             <div class="d-flex">
@@ -152,7 +148,29 @@
 
             <button class="btn btn-outline-danger FStyle mt-3 filter-btn" type="submit">Apply</button>
           </form>
-      </div>
+    </div>
+
+    <div class="card-container col-md-8">
+        {% for data in flats %}
+            {% if data.flatstatus == "Show" %}
+                <div class="card">
+                    <img src="{{data.image.url}}" alt="Card Image">
+            
+                    <div class="card-content">
+                        <h4><b>Price : ₹{{data.price}}</b></h4> 
+                        <p>City : {{data.city}}</p>
+                        <p>Address : {{data.address}}</p> 
+                        <p>Flat-Type : {{data.flat_type}}</p> 
+                        <p class="limited-text">Description : {{data.desc}}</p>
+            
+                        <a href="{% url 'viewflat' data.id %}" class="btn btn-outline-danger card-btn">Book Now</a>
+                    </div>
+                </div>
+            {% endif %}
+        {% empty %}
+            {% include "NoFlat.html" %}
+        {% endfor %}
+    </div>
 </div>
   
 {% endblock content %}

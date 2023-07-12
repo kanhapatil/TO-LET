@@ -5,6 +5,11 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'SignuploginPage.css' %}">
 
+<style>
+    .form1 {
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+</style>
 
 <form method="POST" class="form1 mt-5" enctype="multipart/form-data">{% csrf_token %}
     <h3 class="heading">Add Your Flat</h3>
